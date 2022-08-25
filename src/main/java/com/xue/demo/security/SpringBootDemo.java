@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @description: 启动类
  */
 @SpringBootApplication
-
 public class SpringBootDemo {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootDemo.class, args);

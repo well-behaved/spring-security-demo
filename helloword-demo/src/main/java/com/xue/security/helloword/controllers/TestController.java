@@ -1,4 +1,4 @@
-package com.xue.demo.security.controllers;
+package com.xue.security.helloword.controllers;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;

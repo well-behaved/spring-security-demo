@@ -1,4 +1,4 @@
-package com.xue.demo.security.config;
+package com.xue.security.helloword.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

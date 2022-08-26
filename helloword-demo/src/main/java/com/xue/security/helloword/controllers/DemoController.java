@@ -1,9 +1,9 @@
-package com.xue.demo.security.controllers;
+package com.xue.security.helloword.controllers;
 
-import com.xue.demo.security.dto.ClassDO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.xue.security.helloword.dto.ClassDO;
 
 import java.util.Random;
 

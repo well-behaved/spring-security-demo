@@ -1,4 +1,4 @@
-package com.xue.demo.security;
+package com.xue.security.helloword;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

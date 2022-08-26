@@ -1,4 +1,4 @@
-package com.xue.demo.security.dto;
+package com.xue.security.helloword.dto;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -7,3 +7,7 @@ spring:
     encoding: UTF-8 # 指定字符集编码
   mvc:
     static-path-pattern: /static/** # js ,css 等静态文件路径
+#  security:
+#    user:
+#      name: demo
+#      password: demo

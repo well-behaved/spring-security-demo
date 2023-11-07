@@ -22,10 +22,10 @@ public class DemoController {
      * @return
      */
     @GetMapping("/hello")
-    public String hello() {
+    public ClassDO hello() {
         ClassDO demoDo = new ClassDO();
         demoDo.setClassId(new Random().nextInt(1000) + "");
         demoDo.setClassName("班级名和曾呢");
-        return demoDo.getClassName();
+        return demoDo;
     }
 }

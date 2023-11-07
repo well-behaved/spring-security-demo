@@ -1,17 +1,17 @@
 package com.xue.security.helloword.config;
 
+import com.xue.security.helloword.service.MyUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-/**
- * 通过配置累的方式设置 登录用户名 密码 登录成功和失败跳转页面等
- */
-//@Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+@Configuration
+public class SecurityConfig2 extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private MyUserService myUserService;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();  //关闭CSRF验证
@@ -27,13 +27,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * 通过配置类自定义账号密码
+     * 通过自定义服务 获取 用户名和密码
+     *
      * @param auth
      * @throws Exception
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("admin").password(new BCryptPasswordEncoder().encode("admin")).roles("admin");
+        //密码编辑器
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        //使用自定义的用户服务 来 获取用户
+        auth.userDetailsService(myUserService).passwordEncoder(bCryptPasswordEncoder);
     }
+
 }

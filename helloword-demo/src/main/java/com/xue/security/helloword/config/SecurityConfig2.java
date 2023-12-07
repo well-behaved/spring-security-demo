@@ -15,7 +15,18 @@ public class SecurityConfig2 extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();  //关闭CSRF验证
-        http.authorizeRequests().anyRequest().authenticated();  //对所有接口都进行拦截
+        http.authorizeRequests()
+                //对所有接口都进行拦截
+                .anyRequest().authenticated()
+                //对某个页面进行权限设置 只可以设置一个权限
+                .antMatchers("/demo/hello").hasAuthority("admin")
+                //对某个页面进行权限设置 可以设置多个一个权限
+                .antMatchers("/demo/hello2").hasAnyAuthority("admin,manager")
+                //对某个页面进行角色设置 只可以设置一个角色
+                .antMatchers("/demo/hello2").hasRole("admin")
+                //对某个页面进行角色设置 只可以设置一个角色
+                .antMatchers("/demo/hello2").hasAnyRole("admin","manager");
+                ;
         http.formLogin()
                 .loginPage("/login")             //自定义Login登录页面
                 .usernameParameter("myUsername") //自定义username的参数名称
@@ -24,6 +35,8 @@ public class SecurityConfig2 extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/success")   //验证成功后跳转的地址
                 .failureUrl("/failure")          //验证失败跳转的地址
                 .permitAll();                    //与表单登录相关的接口不拦截
+        //配置没有权限时的跳转页面
+        http.exceptionHandling().accessDeniedPage("/demo.html");
     }
 
     /**

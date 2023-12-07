@@ -24,6 +24,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/success")   //验证成功后跳转的地址
                 .failureUrl("/failure")          //验证失败跳转的地址
                 .permitAll();                    //与表单登录相关的接口不拦截
+        //登出
+        http.logout().logoutUrl("/logout").logoutSuccessUrl("/login.html")
+                .permitAll();
+        //记住我
+        http.rememberMe();
     }
 
     /**
@@ -33,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        //设置用户名和密码
         auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("admin").password(new BCryptPasswordEncoder().encode("admin")).roles("admin");
     }
